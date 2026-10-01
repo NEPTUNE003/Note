@@ -259,5 +259,6 @@ git update-index --chmod=+x <file>        # 修复可执行位
 | 2026-09-30 | 开启 Pages(build_type=workflow)；修 CI 可执行位 | `14386e2` |
 | 2026-09-30 | 笔记按 C++ / FreeRTOS / 嵌入式 分组 | `1dde1c4` |
 | 2026-10-01 | 图片移入 `嵌入式/images/`；`custom.scss` 加图片块级排版规则 | `07c1e0e` |
+| 2026-10-01 | 笔记改名：`环境配置` → `ESP32环境配置（vscode）`（含首页链接更新） | `3dc526e` |
 
 > 后续每次有结构性操作，在此表追加一行。
