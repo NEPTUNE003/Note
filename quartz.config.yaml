@@ -135,6 +135,11 @@ plugins:
     layout:
       position: left
       priority: 50
+  - source: "@local/random-knowledge"
+    enabled: true
+    layout:
+      position: right
+      priority: 5
   - source: "@quartz-community/graph"
     enabled: true
     layout:
