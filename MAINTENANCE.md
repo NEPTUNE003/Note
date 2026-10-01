@@ -258,5 +258,6 @@ git update-index --chmod=+x <file>        # 修复可执行位
 | 2026-09-30 | 从零重建：Quartz 5 + Note 仓库 + 内容迁移 + 首页 | `3d313d2` |
 | 2026-09-30 | 开启 Pages(build_type=workflow)；修 CI 可执行位 | `14386e2` |
 | 2026-09-30 | 笔记按 C++ / FreeRTOS / 嵌入式 分组 | `1dde1c4` |
+| 2026-10-01 | 图片移入 `嵌入式/images/`；`custom.scss` 加图片块级排版规则 | `07c1e0e` |
 
 > 后续每次有结构性操作，在此表追加一行。
