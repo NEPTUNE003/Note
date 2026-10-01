@@ -208,6 +208,10 @@ git push
   npx 缓存 2 个 quartz 包、npm 整体缓存
 - 现项目是从零重建的，与旧项目无 git 关联
 
+### 7.8 构建时出现 `Could not load plugin "@local/random-knowledge" to detect category. Skipping.`
+
+**预期警告，不是故障**（每次 build 都会出现一次，本地和 Actions 都一样）。"随机知识点"按钮是本仓库自装组件，不是真 npm 包，Quartz 探测不到它的类别只好跳过——组件本身靠 `quartz.ts` 里的 `componentRegistry.register` 注册、靠 `quartz.config.yaml` 的 `source: "@local/random-knowledge"` 条目进 layout，两处都在才会显示。以后若按钮消失，先查这两处是否被改动；`source` 必须是 `@scope/name` 格式（裸名会被 `parsePluginSource` 直接报错中断构建）。
+
 ---
 
 ## 8. 注意事项（红线）
@@ -261,5 +265,6 @@ git update-index --chmod=+x <file>        # 修复可执行位
 | 2026-10-01 | 图片移入 `嵌入式/images/`；`custom.scss` 加图片块级排版规则 | `07c1e0e` |
 | 2026-10-01 | 笔记改名：`环境配置` → `ESP32环境配置（vscode）`（含首页链接更新） | `3dc526e` |
 | 2026-10-01 | `通信协议.md` 删引言，加协议索引表（页内锚点跳转） | `e513f80` |
+| 2026-10-01 | 右侧栏随机知识点按钮（新组件 `RandomKnowledge`，`content/知识点/` 随机跳转，reader-mode 随侧栏淡出） | `9bd7764` |
 
 > 后续每次有结构性操作，在此表追加一行。
