@@ -1,3 +1,14 @@
 @use "./variables.scss" as *;
 
 // put your custom CSS here!
+
+// --- 图片排版修复 ---
+// 笔记里的 ![[图片.png|400]] 会渲染成行内 <img width="400">，文字绕着图片排显得乱。
+// 只针对带 width 属性的嵌入大图：独占一行、居中、加上下间距。
+// 行内小图标（无 width 属性）不受影响。
+article img[width] {
+  display: block;
+  margin: 1rem auto;
+  height: auto;
+  max-width: min(100%, 56rem);
+}
