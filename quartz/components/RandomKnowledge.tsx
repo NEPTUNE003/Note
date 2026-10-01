@@ -75,11 +75,11 @@ document.addEventListener("click", function (e) {
       return;
     }
     var pick = pool[Math.floor(Math.random() * pool.length)];
-    var url = base + "/" + pick.slug;
+    var url = new URL(base + "/" + pick.slug, window.location.href);
     if (typeof window.spaNavigate === "function") {
       window.spaNavigate(url, false);
     } else {
-      window.location.href = url;
+      window.location.href = url.href;
     }
   }).catch(function () {
     alert("加载知识点列表失败，请刷新页面后重试");
