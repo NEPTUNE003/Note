@@ -1,0 +1,30 @@
+{
+  "name": "fix-image-paths",
+  "version": "1.0.0",
+  "description": "Undo crawl-links re-anchoring of relative media src paths (shortest strategy)",
+  "type": "module",
+  "license": "MIT",
+  "author": "local",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "sideEffects": false,
+  "quartz": {
+    "name": "fix-image-paths",
+    "displayName": "Fix Image Paths",
+    "category": "transformer",
+    "version": "1.0.0",
+    "quartzVersion": ">=5.0.0",
+    "dependencies": [],
+    "defaultOrder": 62,
+    "defaultEnabled": true,
+    "defaultOptions": {}
+  }
+}

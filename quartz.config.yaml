@@ -78,6 +78,9 @@ plugins:
     options:
       markdownLinkResolution: shortest
     order: 60
+  - source: "./local-plugins/fix-image-paths"
+    enabled: true
+    order: 62
   - source: "@quartz-community/description"
     enabled: true
     order: 70
@@ -90,7 +93,7 @@ plugins:
     enabled: false
     order: 85
   - source: "@quartz-community/hard-line-breaks"
-    enabled: false
+    enabled: true
     order: 90
   - source: "@quartz-community/ox-hugo"
     enabled: false
