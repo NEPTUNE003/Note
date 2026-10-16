@@ -18,6 +18,25 @@ function stripPrefixSegments(src, k) {
 // re-anchored path 404s in the browser. Invert the rewrite: try stripping
 // leading "../" segments (ascending) and keep the first candidate that
 // resolves to a real file on disk relative to the markdown file's directory.
+
+// The rewritten src is slug-lowercased, but the source tree keeps the
+// original case (e.g. "电阻Y形…jpeg" vs "电阻y形…jpeg"), and Linux CI is
+// case-sensitive — resolve each path segment case-insensitively instead.
+function resolvePathCI(abs) {
+  if (fs.existsSync(abs)) return abs;
+  const dir = path.dirname(abs);
+  if (dir === abs) return null;
+  const realDir = resolvePathCI(dir);
+  if (!realDir) return null;
+  try {
+    const base = path.basename(abs);
+    const hit = fs.readdirSync(realDir).find((n) => n.toLowerCase() === base.toLowerCase());
+    return hit ? path.join(realDir, hit) : null;
+  } catch {
+    return null;
+  }
+}
+
 function fixSrc(src, mdDir) {
   if (!src || !src.startsWith(".")) return null;
   for (let k = 0; k <= 8; k++) {
@@ -25,7 +44,8 @@ function fixSrc(src, mdDir) {
     if (!candidate) continue;
     try {
       const abs = path.resolve(mdDir, candidate);
-      if (fs.existsSync(abs) && fs.statSync(abs).isFile()) return candidate;
+      const real = resolvePathCI(abs);
+      if (real && fs.statSync(real).isFile()) return candidate;
     } catch {
       // ignore invalid paths
     }
